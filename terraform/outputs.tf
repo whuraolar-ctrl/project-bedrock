@@ -13,10 +13,11 @@ output "private_subnet_ids" {
   value       = aws_subnet.private[*].id
 }
 
-output "aws_region" {
+output "region" {
   description = "AWS region"
   value       = var.aws_region
 }
+
 output "cluster_name" {
   description = "EKS cluster name"
   value       = aws_eks_cluster.project_bedrock.name
@@ -35,4 +36,9 @@ output "cluster_version" {
 output "ecr_repository_url" {
   description = "ECR repository URL for the retail-store application"
   value       = aws_ecr_repository.retail_store.repository_url
+}
+
+output "assets_bucket_name" {
+  description = "S3 bucket used for application assets"
+  value       = aws_s3_bucket.assets.bucket
 }
