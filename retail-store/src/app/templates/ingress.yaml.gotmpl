@@ -1,0 +1,22 @@
+{{ if env "INGRESS" }}
+ingress:
+  enabled: true
+  className: alb
+  annotations:
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/healthcheck-path: /
+  hosts:
+    - localhost
+{{ end }}
+
+{{ if env "NODE_PORT" }}
+service:
+  type: NodePort
+  nodePort: {{ env "NODE_PORT" }}
+{{ end }}
+
+{{ if env "LOAD_BALANCER" }}
+service:
+  type: LoadBalancer
+{{ end }}
